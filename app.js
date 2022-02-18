@@ -22,7 +22,7 @@ const charactersList = require("./Routes/characters/characterslist");
 app.use(charactersList);
 
 app.all("*", (req, res) => {
-  res.json({ message: "Shu lo lo lo lo" });
+  res.json({ message: "Nothing here" });
 });
 
 app.listen(process.env.PORT || 3000, () => {
