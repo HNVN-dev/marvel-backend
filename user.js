@@ -46,18 +46,20 @@ router.post("/user/signup", async (req, res) => {
 
 router.post("/user/login", async (req, res) => {
   try {
-    const loginUser = await Users.findOne({
+    const loggedUser = await Users.findOne({
       email: req.fields.email,
     });
 
-    if (loginUser === null) {
+    if (loggedUser === null) {
       res.status(401).json({ message: "Unauthorized !" });
     } else {
       const reconnect = req.fields.password;
-      const testHash = SHA256(reconnect + loginUser.salt).toString(encBase64);
-      if (testHash === loginUser.hash) {
-        res.status(200).json({ email: Users.email, token: Users.token });
-      } else if (testHash !== loginUser.hash) {
+      const testHash = SHA256(reconnect + loggedUser.salt).toString(encBase64);
+      if (testHash === loggedUser.hash) {
+        res
+          .status(200)
+          .json({ email: loggedUser.email, token: loggedUser.token });
+      } else if (testHash !== loggedUser.hash) {
         res.status(401).json({ message: "Wrong password." });
       }
     }
