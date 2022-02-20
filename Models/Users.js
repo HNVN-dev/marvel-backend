@@ -5,7 +5,10 @@ const Users = mongoose.model("Users", {
     unique: true,
     type: String,
   },
-  favorites: Array,
+  favorites: {
+    favoritesCharacters: [],
+    favoritesComics: [],
+  },
   token: String,
   hash: String,
   salt: String,
