@@ -12,9 +12,6 @@ mongoose.connect(process.env.MONGODB_URI);
 const user = require("./user");
 app.use(user);
 
-const userFavorites = require("./Routes/userFavorites");
-app.use(userFavorites);
-
 const comicsList = require("./Routes/comicslist");
 app.use(comicsList);
 
